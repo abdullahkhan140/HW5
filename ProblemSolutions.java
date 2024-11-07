@@ -30,16 +30,24 @@ class ProblemSolutions {
      * @return      - returns boolean value B is a subset of A.
      */
 
-    public boolean isSubset(int list1[], int list2[]) {
-        Set<Integer> set = new HashSet<>();
+   public boolean isSubset(int list1[], int list2[]) {
+        if( list2.length > list1.length){ // if list2 is greater than list1 then subset is not found thus return false.
+           return false;
+       }
+    // create hashtable to put elements in from list1
+        Hashtable<Integer, Boolean> table = new Hashtable<>();
+       // add all elements from list1 into hashtable
         for (int number : list1) {
-            set.add(number);
+            table.put(number, true);
         }
+       // check if all elements from list2 are in the table
         for (int number : list2) {
-            if (!set.contains(number)){
+            // if any element in list2 not in hashtable, return false
+            if (!table.containsKey(number)){
             return false;
         }
     }
+       // if all elements of list2 are found in list1 return true
         return true;
     }
 
@@ -56,14 +64,14 @@ class ProblemSolutions {
      * @return      - the value in the array which is the kth maximum value
      */
 
-    public int findKthLargest(int[] array, int k) {
-        Arrays.sort(array);
-        return array[array.length - k];
+ public int findKthLargest(int[] array, int k) {
+        Arrays.sort(array); // sort array in low to highest 
+        return array[array.length - k]; // return k-largest element 
     }
     public static void main(String[] args) {
-        ProblemSolutions answer = new ProblemSolutions();
-        int[] numbersInArray = {1, 7, 3, 10, 34, 5, 8};
-        System.out.println(answer.findKthLargest(numbersInArray, 4));
+        ProblemSolutions answer = new ProblemSolutions(); // create new object of the class ProblemSolutions and assign var answer
+        int[] numbersInArray = {1, 7, 3, 10, 34, 5, 8}; // define array of numbers 
+        System.out.println(answer.findKthLargest(numbersInArray, 4)); // find and print the 4th largest number in array
     }
     /**
      * Method: sort2Arrays
@@ -78,16 +86,16 @@ class ProblemSolutions {
      * @return          - Sorted array with all elements in A and B.
      */
 
-    public int[] sort2Arrays(int[] array1, int[] array2) {
+   public int[] sort2Arrays(int[] array1, int[] array2) {
+       // combines two arrays into one. Sorts merged array in ascending order and returns sorted array.
         int[] merged = new int[array1.length + array2.length];
-
-        for (int a = 0; a < array1.length; a++) {
+        for (int a = 0; a < array1.length; a++) { 
             merged[a] = array1[a];
-        }
+        } 
         for (int a = 0; a < array2.length; a++) {
             merged[array1.length + a] = array2[a];
-        }
-        Arrays.sort(merged);
-        return merged;
+        } 
+       Arrays.sort(merged);
+        return merged; 
     }
 }
