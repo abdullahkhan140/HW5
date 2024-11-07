@@ -212,14 +212,19 @@ class BloomFilter {
      *
      * @param boolean - false if not in set, else true for most probably in set
      */
-   public boolean contains(String s) {
-        for (int n = 0; n < noHashes; n++) {
+   public boolean contains(String s) { 
+         // check if string is in set using hash
+        for (int n = 0; n < noHashes; n++) { 
+         // get hash code for string 
             long hc = hashCode(s, n);
+         // find bit position
             int bitNo = (int) (hc) & this.hashMask;
             if (!data.get(bitNo)) {
+         // if biit not set, no string in set
                 return false;
             }
         }
+            // if the bits are in set, string is likely in set
         return true;
     }
     /*********************************
