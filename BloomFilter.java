@@ -220,7 +220,7 @@ class BloomFilter {
          // find bit position
             int bitNo = (int) (hc) & this.hashMask;
             if (!data.get(bitNo)) {
-         // if biit not set, no string in set
+         // if bit not in set, no string in set
                 return false;
             }
         }
