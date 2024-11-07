@@ -213,10 +213,10 @@ class BloomFilter {
      * @param boolean - false if not in set, else true for most probably in set
      */
    public boolean contains(String s) {
-        for (int a = 0; a < noHashes; a++) {
-            long hashValue = hashCode(s, a);
-            int bitValue = (int) (hashValue) & this.hashMask;
-            if (!data.get(bitValue)) {
+        for (int n = 0; n < noHashes; n++) {
+            long hc = hashCode(s, n);
+            int bitNo = (int) (hc) & this.hashMask;
+            if (!data.get(bitNo)) {
                 return false;
             }
         }
