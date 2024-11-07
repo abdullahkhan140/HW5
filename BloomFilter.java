@@ -203,8 +203,6 @@ class BloomFilter {
             data.set(bitNo);
         }
     }
-
-
     /*
      * Method contains
      *
@@ -214,12 +212,11 @@ class BloomFilter {
      *
      * @param boolean - false if not in set, else true for most probably in set
      */
-
-    public boolean contains(String s) {
+   public boolean contains(String s) {
         for (int a = 0; a < noHashes; a++) {
-            long hc = hashCode(s, a);
-            int numberOfBit = (int) (numberOfBit) & this.hashMask;
-            if (!data.get(numberOfBit)) {
+            long hashValue = hashCode(s, a);
+            int bitValue = (int) (hashValue) & this.hashMask;
+            if (!data.get(bitValue)) {
                 return false;
             }
         }
