@@ -216,10 +216,10 @@ class BloomFilter {
      */
 
     public boolean contains(String s) {
-        for (int n = 0; n < noHashes; n++) {
-            long hc = hashCode(s, n);
-            int bitNo = (int) (hc) & this.hashMask;
-            if (!data.get(bitNo)) {
+        for (int a = 0; a < noHashes; a++) {
+            long hc = hashCode(s, a);
+            int numberOfBit = (int) (numberOfBit) & this.hashMask;
+            if (!data.get(numberOfBit)) {
                 return false;
             }
         }
