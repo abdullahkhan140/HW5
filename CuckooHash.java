@@ -267,7 +267,14 @@ public class CuckooHash<K, V> {
 			table[pos1] = newBucketSpot;
 			newBucketSpot = oldBucketSpot; // the entry taken out will be store in the next available entry position
 			// switch the second position for the kicked entry
-			pos1 = (pos1 == hash1((K) newBucketSpot.getBucKey())) ? hash2((K) newBucketSpot.getBucKey()) : hash1((K) newBucketSpot.getBucKey());
+			int hashValue1 = hash1((K) newBucketSpot.getBucKey());
+			int hashValue2 = hash2((K) newBucketSpot.getBucKey());
+
+			if (pos1 == hashValue1) {
+				pos1 = hashValue2;
+			} else {
+				pos1 = hashValue1;
+			}
 			// increase the attempt counter
 			attempts++;
 		}
